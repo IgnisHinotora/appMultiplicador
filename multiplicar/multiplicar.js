@@ -6,13 +6,30 @@ Será referenciada en la aplicación*/
 
 
 
-let listarTabla = (tabla, limite = 10) => {
+let listarTabla = (base, limite = 10) => {
+    return new Promise((resolve, reject) => {
 
+        if (!Number(base)) {
+            reject(`${base} no es un número`);
+        } else {
+            if (!Number(limite)) {
+                reject(`${limite} no es un número`);
+            }
+
+        }
+        for (let i = 1; i < limite + 1; i++) {
+
+            console.log(`${base} * ${i} = ${base*i}`)
+
+        }
+        resolve('Tabla impresa con éxito!')
+    })
 
 
 }
 
-let crearArchivo = (base) => {
+let crearArchivo = (base, limite) => {
+
 
 
     /*al definir una promesa se definen como parametros de entrada un 
@@ -21,10 +38,14 @@ let crearArchivo = (base) => {
 
         if (!Number(base)) { //equivalente al int.tryparse para ver si es un número
             reject(`El valor ${base} no es un número`)
+        } else {
+            if (!Number(limite)) {
+                reject(`${limite} no es un número`);
+            }
         }
 
         let data = ''; // data acumula las iteraciones de las lineas de multiplicaciones
-        for (let i = 1; i < 11; i++) {
+        for (let i = 1; i < limite + 1; i++) {
 
             data += `${base} X ${i} =  ${base * i}\n`;
 
@@ -48,5 +69,6 @@ let crearArchivo = (base) => {
 
 //se exporta esta función para ser usada en app
 module.exports = {
-    crearArchivo
+    crearArchivo,
+    listarTabla
 }
